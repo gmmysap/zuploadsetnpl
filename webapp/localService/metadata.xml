@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZUI_GM3_DOKUMENT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Dokument" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="docguid"/>
+                </Key>
+                <Property Name="docguid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID"/>
+                <Property Name="id" Type="Edm.Guid" sap:unicode="false" sap:label="UUID"/>
+                <Property Name="fileName" Type="Edm.String" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:unicode="false"/>
+                <Property Name="mediaType" Type="Edm.String" MaxLength="128" sap:unicode="false"/>
+                <Property Name="revision" Type="Edm.Int16" sap:unicode="false" sap:label="Int2"/>
+                <Property Name="status" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Char15"/>
+                <Property Name="filesize" Type="Edm.Int32" sap:unicode="false" sap:label="Number"/>
+                <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="User Name"/>
+                <Property Name="lastmodified" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Time Stamp"/>
+                <Property Name="documentType" Type="Edm.String" MaxLength="100" sap:unicode="false"/>
+                <Property Name="imageUrll" Type="Edm.String" MaxLength="128" sap:unicode="false"/>
+                <Property Name="media_resource" Type="Edm.Binary" sap:unicode="false" sap:label="Binary String"/>
+            </EntityType>
+            <EntityContainer Name="ZUI_GM3_DOKUMENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="DokumentSet" EntityType="ZUI_GM3_DOKUMENT_SRV.Dokument" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://127.0.0.1:8000/sap/opu/odata/sap/ZUI_GM3_DOKUMENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://127.0.0.1:8000/sap/opu/odata/sap/ZUI_GM3_DOKUMENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
