@@ -31,7 +31,7 @@ sap.ui.define([
                 oModel.loadData(sPath);
 
                 //  this.getView().setModel(oModel);
-                this.oUploadSetTable = this.byId("UploadSetTable");
+                this.oUploadSetTable = this.byId("UploadSetTable");  //new branch
 
                 this.documentTypes = this.getFileCategories();
                 this.oItemsProcessor = [];
