@@ -18,6 +18,7 @@
             maxFileNameLength="60"
             uploadUrl="/sap/opu/odata/sap/ZUI_GM3_DOKUMENT_SRV/DokumentSet"
             multiple="true"
+            instantUpload="false" 
             beforeInitiatingItemUpload="onBeforeInitiatingItemUpload"
             beforeUploadStarts="onBeforeUploadStarts"
             selectionChange="onSelectionChange"
@@ -147,7 +148,7 @@
                 <UploadSetwithTableItem
                     fileName="{fileName}"
                     mediaType="{mediaType}"
-                    url="/sap/opu/odata/sap/ZUI_GM3_DOKUMENT_SRV/DokumentSet(guid'{docguid}')$media_resource"
+                    url="/sap/opu/odata/sap/ZUI_GM3_DOKUMENT_SRV/DokumentSet(guid'{docguid}')/$value"
                     highlight="{=${uploadState} === 'Complete' ? 'Indication05' : null }"
                     previewable="{previewable}"
                     fileSize="{fileSize}"
@@ -202,4 +203,5 @@
             </items>
         </UploadSetwithTable>
     </m:Page>
+   
 </mvc:View>

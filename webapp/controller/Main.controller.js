@@ -31,7 +31,7 @@ sap.ui.define([
                 oModel.loadData(sPath);
 
                 //  this.getView().setModel(oModel);
-                this.oUploadSetTable = this.byId("UploadSetTable");  //new branch
+                this.oUploadSetTable = this.byId("UploadSetTable");  //new branch 2
 
                 this.documentTypes = this.getFileCategories();
                 this.oItemsProcessor = [];
@@ -399,10 +399,15 @@ sap.ui.define([
                 //  this.oMockServer.start();
 
                 var oModel = this.getView().getModel();
+              //  oModel.setTokenHandlingEnabled(true);
+
+              //oModel.setHeaders({"X-Requested-With" : "X"});
+
                 var oHeaders = oModel.oHeaders;
 
                 const oUploadSet = this.getView().byId("UploadSetTable");
 
+               oUploadSet.removeAllHeaderFields();
                 oUploadSet.addHeaderField(
                     new sap.ui.core.Item({
                         key: "slug",
@@ -410,7 +415,7 @@ sap.ui.define([
                     })
                 );
 
-                oModel.refreshSecurityToken();
+              /*  oModel.refreshSecurityToken();
                 oUploadSet.addHeaderField(
                     new sap.ui.core.Item({
                         key: "x-csrf-token",
@@ -418,7 +423,7 @@ sap.ui.define([
                     })
                 );
 
-
+              */
 
                 // oHeaders.slug = oEvent.getParameter('item').mProperties.fileName;
 
