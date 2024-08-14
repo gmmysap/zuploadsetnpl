@@ -147,7 +147,8 @@
                 <UploadSetwithTableItem
                     fileName="{fileName}"
                     mediaType="{mediaType}"
-                    url="/sap/opu/odata/sap/ZUI_GM3_DOKUMENT_SRV/DokumentSet(guid'{docguid}')$media_resource"
+                   url="{path:'docguid', formatter:'.formatter.getMediaUrl'}"
+                
                     highlight="{=${uploadState} === 'Complete' ? 'Indication05' : null }"
                     previewable="{previewable}"
                     fileSize="{fileSize}"
@@ -157,7 +158,7 @@
                     <cells>
                         <m:HBox>
                             <m:Image
-                                src="{imageUrl}"
+                                src="{path:'docguid', formatter:'.formatter.getMediaUrl'}"
                                 class="sapMUSTItemImage sapMUSTItemIcon"
                                 visible="{= ${imageUrl} !== undefined}"
                             />

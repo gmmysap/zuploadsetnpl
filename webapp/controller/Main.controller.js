@@ -15,15 +15,21 @@ sap.ui.define([
     "sap/ui/core/Item",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/ui/core/Element"
+    "sap/ui/core/Element",
+    "../model/formatter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, UploadSetwithTable, UploadSetwithTableItem, MessageBox, Fragment, MockServer, MessageToast, Dialog, Button, mobileLibrary, Text, coreLibrary, CoreItem, Filter, FilterOperator, Element) {
+    function (Controller, JSONModel, UploadSetwithTable, UploadSetwithTableItem, MessageBox, Fragment, MockServer, MessageToast, Dialog, Button, mobileLibrary, Text, coreLibrary, CoreItem, Filter, FilterOperator, Element,formatter) {
         "use strict";
 
+        
+
         return Controller.extend("zuploadsetnpl.controller.Main", {
+            
+            formatter: formatter,
+
             onInit: function () {
                 var sPath = jQuery.sap.getModulePath("zuploadsetnpl", "/test/items.json");
 

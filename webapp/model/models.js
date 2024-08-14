@@ -13,11 +13,38 @@ sap.ui.define([
     function (JSONModel, Device) {
         "use strict";
 
+    /**
+	 * The app's OData model
+	 * 
+	 * @type {sap.ui.model.odata.v2.ODataModel}
+	 * @private
+	 */
+	let oODataModel;
+    /**
+	 * @function
+	 * @param {sap.ui.model.odata.v2.ODataModel} oNewODataModel The component's OData model
+	 * @public
+	 */
+	const setODataModel = (oNewODataModel) => oODataModel = oNewODataModel;
+
+	/**
+	 * @function
+	 * @returns {sap.ui.model.odata.v2.ODataModel} The component's OData model
+	 * @public
+	 */
+	const getODataModel = () => oODataModel;	
+
+
+
+
         return {
             createDeviceModel: function () {
                 var oModel = new JSONModel(Device);
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
-        }
+        },
+		getODataModel: getODataModel,
+		setODataModel: setODataModel
+
     };
 });

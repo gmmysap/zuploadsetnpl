@@ -29,6 +29,10 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
+
+                // set the component's OData model
+			   models.setODataModel(this.getModel());
+
             }
         });
     }
