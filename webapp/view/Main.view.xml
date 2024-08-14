@@ -1,4 +1,5 @@
-<mvc:View controllerName="zuploadsetnpl.controller.Main"
+<mvc:View
+    controllerName="zuploadsetnpl.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m"
     xmlns:core="sap.ui.core"
@@ -22,7 +23,8 @@
             beforeUploadStarts="onBeforeUploadStarts"
             selectionChange="onSelectionChange"
             itemRenamed="onDocumentRenamedSuccess"
-            uploadCompleted="onUploadCompleted" >
+            uploadCompleted="onUploadCompleted"
+        >
             <!-- ToolBar for UploadSetwithTable -->
             <headerToolbar>
                 <m:OverflowToolbar>
@@ -42,7 +44,9 @@
                         </m:layoutData>
                     </m:SearchField>
                     <m:ToolbarSeparator />
-                    <ActionsPlaceholder placeholderFor="UploadButtonPlaceholder" />
+                    <ActionsPlaceholder
+                        placeholderFor="UploadButtonPlaceholder"
+                    />
                     <m:Button
                         id="downloadSelectedButton"
                         text="Download"
@@ -109,7 +113,10 @@
 
             <!-- Columns for UploadSetwithTable -->
             <columns>
-                <Column id="fileName" importance="High">
+                <Column
+                    id="fileName"
+                    importance="High"
+                >
                     <header>
                         <m:Label text="File Name" />
                     </header>
@@ -139,7 +146,10 @@
                         <m:Label text="Last Modified" />
                     </header>
                 </Column>
-                <Column id="actionButton" importance="High" />
+                <Column
+                    id="actionButton"
+                    importance="High"
+                />
             </columns>
 
             <!-- Items aggregation with template UploadSetwithTableItem definition for each row -->
@@ -147,27 +157,25 @@
                 <UploadSetwithTableItem
                     fileName="{fileName}"
                     mediaType="{mediaType}"
-                   url="{path:'docguid', formatter:'.formatter.getMediaUrl'}"
-                
+                    url="{path:'docguid', formatter:'.formatter.getMediaUrl'}"
                     highlight="{=${uploadState} === 'Complete' ? 'Indication05' : null }"
                     previewable="{previewable}"
                     fileSize="{fileSize}"
                 >
-
-                <!-- Cells with cell template defining content for each column (cells and columns work with 1:1 mapping) -->
+                    <!-- Cells with cell template defining content for each column (cells and columns work with 1:1 mapping) -->
                     <cells>
                         <m:HBox>
                             <m:Image
                                 src="{path:'docguid', formatter:'.formatter.getMediaUrl'}"
                                 class="sapMUSTItemImage sapMUSTItemIcon"
-                                visible="{= ${imageUrl} !== undefined}"
+                                decorative="false" densityAware="false" height="30px" width="30px"
                             />
-                            <core:Icon
+                       <!--      <core:Icon
                                 src="{parts: ['mediaType', 'fileName'], formatter: '.getIconSrc' }"
                                 color="white"
                                 visible="{= ${imageUrl} === undefined || ${imageUrl} === '' }"
                                 class="sapMUSTItemImage sapMUSTItemIcon"
-                            />
+                            /> -->
                             <m:VBox
                                 class="sapUiTinyMargin sapUiSmallMarginBegin"
                             >
@@ -176,7 +184,10 @@
                                     press="openPreview"
                                     class="sapUiTinyMarginBottom"
                                 />
-                                <m:Text text="{documentType}" class="sapUiTinyMarginTop" />
+                                <m:Text
+                                    text="{documentType}"
+                                    class="sapUiTinyMarginTop"
+                                />
                             </m:VBox>
                         </m:HBox>
                         <m:Text text="{id}" />

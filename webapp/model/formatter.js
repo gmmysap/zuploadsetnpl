@@ -20,13 +20,24 @@ sap.ui.define([
 		return oModel.sServiceUrl + sPath + "/$value";
 	};
 
+	const getthumbnailSrc = (odocguid,mediaType,) => {
+		const oModel = models.getODataModel(),
+			sPath = oModel.createKey("/DokumentSet", {
+				docguid: odocguid
+
+			});
+
+		return oModel.sServiceUrl + sPath + "/$value";
+	};
+
 	/**
 
 	 * @property {function} getAttachmentUrl
 	 * @public
 	 */
 	return {
-	  getMediaUrl:  getMediaUrl
+	  getMediaUrl:  getMediaUrl,
+	  getthumbnailSrc: getthumbnailSrc
 	};
 
 });
