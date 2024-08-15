@@ -21,13 +21,13 @@ sap.ui.define([
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, UploadSetwithTable, UploadSetwithTableItem, MessageBox, Fragment, MockServer, MessageToast, Dialog, Button, mobileLibrary, Text, coreLibrary, CoreItem, Filter, FilterOperator, Element,formatter) {
+    function (Controller, JSONModel, UploadSetwithTable, UploadSetwithTableItem, MessageBox, Fragment, MockServer, MessageToast, Dialog, Button, mobileLibrary, Text, coreLibrary, CoreItem, Filter, FilterOperator, Element, formatter) {
         "use strict";
 
-        
+
 
         return Controller.extend("zuploadsetnpl.controller.Main", {
-            
+
             formatter: formatter,
 
             onInit: function () {
@@ -112,6 +112,9 @@ sap.ui.define([
                     setTimeout(function () {
                         MessageToast.show("Document Added");
                     }, 1000);
+                } else {
+                    console.log(oEvent.getParameter("response"));
+                    MessageToast.show(oEvent.getParameter("response"));
                 }
                 // This code block is only for demonstration purpose to simulate XHR requests, hence restoring the server to not fake the xhr requests.
                 //   this.oMockServer.restore(); gm
@@ -128,8 +131,12 @@ sap.ui.define([
                 if (clickedControl instanceof UploadSetwithTableItem) {
                     olistItemTobeRemoved = clickedControl;
                 }
+
                 this.removeItem(olistItemTobeRemoved);
+           
+          
             },
+
             removeItem: function (oItem) {
                 var oModel = this.getView().getModel();
                 var oUploadSet = this.byId("UploadSetTable");
@@ -146,15 +153,20 @@ sap.ui.define([
                                 return;
                             }
                             var spath = oItem.getBindingContext().sPath;
-                            if (spath.split("/")[2]) {
-                                var index = spath.split("/")[2];
-                                var data = oModel.getProperty("/items");
-                                data.splice(index, 1);
-                                oModel.refresh(true);
-                                if (oUploadSet && oUploadSet.removeSelections) {
-                                    oUploadSet.removeSelections();
-                                }
-                            }
+                           
+                                oModel.remove(spath, {
+                                    method: "DELETE",
+                                    success: function (oData, response) {
+
+                                        MessageToast.show("Document deleted");
+                                    },
+                                    error: function (oError) {
+                                        MessageToast.show(oError.statusText);
+                                    }
+
+                                });
+                           
+
                         }
                     }
                 );
@@ -374,6 +386,18 @@ sap.ui.define([
 
                 // Toast for sucessful rename.
                 MessageToast.show("Document Renamed.", { duration: 2000 });
+
+                var oModel = this.getView().getModel();
+                oModel.submitChanges(
+                    {
+                        success: function (data) {
+                            alert("success");
+                        },
+                        error: function (e) {
+                            alert(e.responseText);
+                        }
+                    }
+                    );
             },
             openDocumentWithoutFileDialog: function () {
 
